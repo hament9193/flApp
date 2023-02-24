@@ -1,41 +1,30 @@
-import 'package:first_app/main.dart';
+import 'package:first_app/models/catalog.dart';
+import 'package:first_app/widgets/drawer.dart';
+import 'package:first_app/widgets/item_widget.dart';
 import 'package:flutter/material.dart';
-import 'home_page_new.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key, this.title = 'Flutter Demo Home Page'});
+
+  final String title;
+
+  @override
+  State<HomePage> createState() => MyHomePageState();
+}
 
 class MyHomePageState extends State<HomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              "You have pushed the button $_counter times:",
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        appBar: AppBar(
+          title: const Text("Catalog App"),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        drawer: MyDrawer(),
+        body: ListView.builder(
+          itemCount: CatalogModel.items.length,
+          itemBuilder: (context, index) {
+            return ItemWidget(item: CatalogModel.items[index]);
+          },
+        ));
   }
 }
