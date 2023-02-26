@@ -22,8 +22,8 @@ class MyApp extends StatelessWidget {
       theme: MyTheme.themeData,
       darkTheme: MyTheme.darkTheme(),
       routes: {
-        MyRoutes.rootRoute: (contesxt) => const HomePage(),
-        MyRoutes.homeRoute: (contesxt) => const HomePage(),
+        MyRoutes.rootRoute: (contesxt) => HomePage(),
+        MyRoutes.homeRoute: (contesxt) => HomePage(),
         MyRoutes.loginRoute: (context) => const LoginPage(),
         MyRoutes.plusRoute: (context) => const PlusPage(),
       },

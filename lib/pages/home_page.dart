@@ -1,11 +1,13 @@
+import 'dart:convert';
+
 import 'package:first_app/models/catalog.dart';
 import 'package:first_app/widgets/drawer.dart';
 import 'package:first_app/widgets/item_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, this.title = 'Flutter Demo Home Page'});
-
+  HomePage({super.key, this.title = 'Flutter Demo Home Page'});
   final String title;
 
   @override
@@ -13,6 +15,22 @@ class HomePage extends StatefulWidget {
 }
 
 class MyHomePageState extends State<HomePage> {
+  Catalog? catalog = null;
+
+  @override
+  void initState() {
+    super.initState();
+
+    loadData().then((catalog) {
+      this.catalog = catalog;
+      setState(
+        () {
+          this.catalog = catalog;
+        },
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,11 +38,22 @@ class MyHomePageState extends State<HomePage> {
           title: const Text("Catalog App"),
         ),
         drawer: MyDrawer(),
-        body: ListView.builder(
-          itemCount: CatalogModel.items.length,
-          itemBuilder: (context, index) {
-            return ItemWidget(item: CatalogModel.items[index]);
-          },
-        ));
+        body: (catalog != null && catalog!.items.isNotEmpty)
+            ? GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
+                itemCount: catalog?.items.length ?? 0,
+                itemBuilder: (context, index) {
+                  return ItemWidget(item: catalog!.items[index]);
+                },
+              )
+            : Center(child: CircularProgressIndicator()));
+  }
+
+  Future<Catalog> loadData() async {
+    await Future.delayed(Duration(seconds: 6));
+    var json = await rootBundle.loadString("assets/files/catalog.json");
+    var decodedData = jsonDecode(json);
+    return Catalog.fromJson(decodedData);
   }
 }

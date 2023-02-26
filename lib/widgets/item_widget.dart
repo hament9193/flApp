@@ -8,15 +8,23 @@ class ItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       margin: EdgeInsets.all(10),
-      child: ListTile(
-        leading: Image.network(item.img),
-        title: Text(item.name),
-        subtitle: Text(item.desc),
-        trailing: TextButton(
-          onPressed: () {},
-          child: Text('Buy \$${item.price}'),
+      child: GridTile(
+        header: Text(item.name),
+        footer: Container(
+          decoration: BoxDecoration(color: Colors.deepPurple),
+          child: TextButton(
+            onPressed: () {},
+            child: Text(
+              'Buy \$${item.price}',
+              style: const TextStyle(color: Colors.white),
+            ),
+          ),
         ),
+        child: Padding(
+            padding: EdgeInsets.all(16), child: Image.network(item.img)),
       ),
     );
   }
