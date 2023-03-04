@@ -40,13 +40,10 @@ class MyHomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).canvasColor,
         appBar: AppBar(
           title: const Text("Catalog App"),
-          textTheme: Theme.of(context).textTheme,
           backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         ),
         drawer: MyDrawer(),
         floatingActionButton: FloatingActionButton(
-          backgroundColor:
-              Theme.of(context).buttonTheme.colorScheme?.background,
           onPressed: () {
             Navigator.pushNamed(context, MyRoutes.cartRoute);
           },
@@ -59,7 +56,7 @@ class MyHomePageState extends State<HomePage> {
           padding: const EdgeInsets.all(32),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const CatalogHeader(),
+            CatalogHeader(),
             const SizedBox(
               height: 16,
             ),
@@ -84,25 +81,16 @@ class CatalogHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          Text(
-            "Catalog App",
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 32,
-                color: MyTheme.darkBluishColor),
-          ),
-          Text(
-            "Trending products",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: MyTheme.darkBluishColor,
-            ),
-          )
-        ]);
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        "Catalog App",
+        style: Theme.of(context).textTheme.titleLarge,
+      ),
+      Text(
+        "Trending products",
+        style: Theme.of(context).primaryTextTheme.bodyMedium,
+      )
+    ]);
   }
 }
 
@@ -178,14 +166,14 @@ class ListItem extends StatelessWidget {
                       item.name,
                       textAlign: TextAlign.start,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 4,
                     ),
                     Text(
                       item.desc,
                       textAlign: TextAlign.start,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     ButtonBar(
@@ -195,23 +183,18 @@ class ListItem extends StatelessWidget {
                         Text(
                           "\$${item.price}",
                           style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold
-                              color: Theme.of(context).textTheme),
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).primaryColor),
                         ),
                         TextButton(
                             onPressed: () => {},
-                            child: Padding(
+                            child: const Padding(
                               padding: EdgeInsets.only(left: 8, right: 8),
                               child: Text(
                                 "Add to cart",
-                                style: TextStyle(color: Colors.white),
                               ),
-                            ),
-                            style: ButtonStyle(
-                                backgroundColor: MaterialStatePropertyAll(
-                                    Theme.of(context).highlightColor),
-                                shape: MaterialStateProperty.all(
-                                    StadiumBorder()))),
+                            )),
                       ],
                     )
                   ],
@@ -232,7 +215,8 @@ class ItemImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-          color: MyTheme.creamColor, borderRadius: BorderRadius.circular(8)),
+          color: Theme.of(context).canvasColor,
+          borderRadius: BorderRadius.circular(8)),
       child: Padding(
         padding: EdgeInsets.all(4),
         child: Image.network(

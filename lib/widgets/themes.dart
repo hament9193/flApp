@@ -6,7 +6,35 @@ class MyTheme {
       fontFamily: GoogleFonts.lato().fontFamily,
       cardColor: Colors.white,
       canvasColor: creamColor,
-      buttonTheme: const ButtonThemeData(buttonColor: darkBluishColor),
+      buttonTheme: const ButtonThemeData(
+        buttonColor: darkBluishColor,
+        textTheme: ButtonTextTheme.primary,
+      ),
+      textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+              backgroundColor: const MaterialStatePropertyAll(darkBluishColor),
+              shape: MaterialStateProperty.all(const StadiumBorder()),
+              foregroundColor: const MaterialStatePropertyAll(Colors.white),
+              textStyle: const MaterialStatePropertyAll(TextStyle(
+                color: Colors.white,
+              )))),
+      primaryTextTheme: const TextTheme(
+          titleLarge: const TextStyle(color: Colors.black, fontSize: 42),
+          titleMedium: const TextStyle(color: Colors.black, fontSize: 32),
+          bodyMedium: const TextStyle(color: Colors.black, fontSize: 16)),
+      textTheme: const TextTheme(
+          titleLarge: TextStyle(color: Colors.grey, fontSize: 42),
+          titleMedium: TextStyle(color: Colors.grey, fontSize: 32),
+          bodyMedium: TextStyle(color: Colors.grey, fontSize: 16)),
+      iconButtonTheme: const IconButtonThemeData(
+          style: ButtonStyle(
+        backgroundColor: MaterialStatePropertyAll(darkBluishColor),
+        iconColor: MaterialStatePropertyAll(Colors.white),
+      )),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: darkBluishColor,
+        foregroundColor: creamColor,
+      ),
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
@@ -20,7 +48,35 @@ class MyTheme {
       fontFamily: GoogleFonts.lato().fontFamily,
       cardColor: Colors.black,
       canvasColor: darkBluishColor,
-      buttonTheme: ButtonThemeData(buttonColor: darkBluishColor),
+      iconButtonTheme: const IconButtonThemeData(
+          style: ButtonStyle(
+        backgroundColor: MaterialStatePropertyAll(creamColor),
+        iconColor: MaterialStatePropertyAll(Colors.black),
+      )),
+      buttonTheme: const ButtonThemeData(
+        buttonColor: creamColor,
+        textTheme: ButtonTextTheme.primary,
+      ),
+      textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+              backgroundColor: const MaterialStatePropertyAll(creamColor),
+              shape: MaterialStateProperty.all(const StadiumBorder()),
+              foregroundColor: const MaterialStatePropertyAll(Colors.black),
+              textStyle: const MaterialStatePropertyAll(TextStyle(
+                color: Colors.black,
+              )))),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: creamColor,
+        foregroundColor: darkBluishColor,
+      ),
+      primaryTextTheme: const TextTheme(
+          titleLarge: TextStyle(color: Colors.white, fontSize: 42),
+          titleMedium: TextStyle(color: Colors.white, fontSize: 32),
+          bodyMedium: TextStyle(color: Colors.white, fontSize: 16)),
+      textTheme: const TextTheme(
+          titleLarge: TextStyle(color: Colors.cyan, fontSize: 42),
+          titleMedium: TextStyle(color: Colors.cyan, fontSize: 32),
+          bodyMedium: TextStyle(color: Colors.cyan, fontSize: 16)),
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
